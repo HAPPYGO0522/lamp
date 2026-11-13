@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>家門口那盞燈 測驗解析</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;800&family=Huninn&family=Noto+Sans+TC:wght@400;500&display=swap">
+<style>
+/* Layout: one phone-width column of letter cards with hard offset shadows; denim navy + brass, like a well-kept leather wallet */
+:root{
+  --bg:#E4E9EE; --card:#FBFCFD; --soft:#EDF1F5; --tile:#D9E1E9;
+  --ink:#18222D; --muted:#5A6673; --navy:#24405E; --brass:#9A6B25; --shadow:#18222D; --btn-ink:#FBFCFD;
+  --f-head:"Noto Serif TC","Songti TC",serif;
+  --f-round:"Huninn","Noto Sans TC","PingFang TC",sans-serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F151C; --card:#17202A; --soft:#1D2834; --tile:#22303E;
+  --ink:#E4E9EE; --muted:#97A4B1; --navy:#8DB3DA; --brass:#D9A85C; --shadow:#04070A; --btn-ink:#0F151C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F151C; --card:#17202A; --soft:#1D2834; --tile:#22303E;
+  --ink:#E4E9EE; --muted:#97A4B1; --navy:#8DB3DA; --brass:#D9A85C; --shadow:#04070A; --btn-ink:#0F151C; color-scheme:dark}
+
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.85}
+.wrap{max-width:560px;margin:0 auto;padding-block:28px 56px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:24px}
+h1,h2,h3{font-family:var(--f-head);font-weight:800;margin:0;text-wrap:balance;line-height:1.4}
+p{margin:0}
+.pill{align-self:flex-start;font-family:var(--f-round);font-size:13px;letter-spacing:.06em;background:var(--navy);color:var(--btn-ink);padding:4px 14px;border-radius:999px}
+.card{background:var(--card);border:2px solid var(--shadow);border-radius:18px;box-shadow:5px 5px 0 var(--shadow)}
+.muted{color:var(--muted)}
+
+/* landing */
+.intro{display:flex;flex-direction:column;gap:12px;text-align:center;align-items:center}
+.intro .pill{align-self:center}
+.intro h1{font-size:clamp(24px,6.4vw,30px)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
+.tile{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px 10px;background:var(--tile);border-radius:12px;border:2px solid transparent;cursor:pointer;color:var(--ink);font:inherit;text-decoration:none}
+.tile:hover,.tile:focus-visible{border-color:var(--navy);outline:none}
+.tile svg{width:100%;max-width:130px;aspect-ratio:1;height:auto}
+.tile b{font-family:var(--f-round);font-weight:400;font-size:14px}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{display:flex;align-items:center;gap:14px;padding:14px 16px;text-decoration:none;color:var(--ink);font-family:var(--f-round);font-size:16px}
+.opt:hover,.opt:focus-visible{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--shadow);outline:none}
+.letter{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--brass);font-family:var(--f-head);font-weight:800;border:1.5px solid var(--brass)}
+
+/* result */
+.res-head{display:flex;flex-direction:column;gap:10px}
+.res-head h1{font-size:clamp(23px,6vw,28px)}
+.res-head .chosen{font-size:13.5px;color:var(--muted)}
+.res-art{align-self:flex-end;width:84px;height:84px;margin-bottom:-14px;background:var(--tile);border-radius:50%;border:2px solid var(--shadow);display:grid;place-items:center}
+.res-art svg{width:66px;height:66px}
+.quote{padding:16px 18px;border-left:5px solid var(--navy);border-radius:10px 14px 14px 10px;font-family:var(--f-head);font-weight:600;font-size:17px;line-height:1.7}
+.letter-card{padding:22px 20px;display:flex;flex-direction:column;gap:22px}
+.sec{display:flex;flex-direction:column;gap:8px}
+.sec h3{font-family:var(--f-round);font-weight:400;font-size:14.5px;color:var(--brass);letter-spacing:.04em}
+.sec p+p{margin-top:6px}
+.steps{background:var(--soft);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:14px}
+.steps b{display:block;font-weight:500}
+.say{font-family:var(--f-head);font-weight:600;font-size:17px}
+
+/* community */
+.join{padding:22px 20px;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-family:var(--f-round);font-size:13px;letter-spacing:.12em;color:var(--brass)}
+.join h2{font-size:24px}
+.btn{align-self:flex-start;display:inline-block;padding:11px 26px;border-radius:999px;background:var(--navy);color:var(--btn-ink);text-decoration:none;font-family:var(--f-round);font-size:16px;border:2px solid var(--shadow);box-shadow:3px 3px 0 var(--shadow)}
+.btn.off{background:var(--soft);color:var(--muted);box-shadow:none;cursor:default}
+.btn:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.code{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border:2px dashed var(--brass);border-radius:14px;background:var(--soft);font-family:var(--f-round)}
+.code strong{color:var(--brass);font-weight:400;font-size:18px;letter-spacing:.06em}
+.copy{flex:none;font:inherit;font-size:14px;padding:6px 16px;border-radius:999px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);cursor:pointer}
+
+/* others */
+.others{display:flex;flex-direction:column;gap:12px}
+.others h2{font-size:22px}
+details.card{padding:0;box-shadow:3px 3px 0 var(--shadow)}
+details summary{list-style:none;cursor:pointer;padding:13px 16px;font-family:var(--f-round);display:flex;gap:8px}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"▸";color:var(--brass)}
+details[open] summary::before{content:"▾"}
+details .in{padding:0 16px 14px;display:flex;flex-direction:column;gap:8px}
+details .in a{color:var(--navy);font-size:14px}
+.pick-others{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.po{display:flex;flex-direction:column;gap:8px;padding:8px;text-decoration:none;color:var(--ink);box-shadow:3px 3px 0 var(--shadow)}
+.po-art{position:relative;display:block}
+.po-art svg{width:100%;height:auto;aspect-ratio:1;display:block}
+.po-art b{position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:12px;border:2px solid #fff}
+.po-t{font-size:12.5px;line-height:1.5;font-family:var(--f-round);color:var(--muted)}
+.pw{position:relative;display:block;width:100%}
+.pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:12px}
+.res-art{position:relative;overflow:hidden}.res-art .pimg{border-radius:50%}.po-art{overflow:hidden;border-radius:10px}
+.close{padding:22px 20px;display:flex;flex-direction:column;gap:10px}
+.close h2{font-size:21px}
+.sign{font-family:var(--f-round);color:var(--muted);text-align:right}
+footer{font-size:12px;color:var(--muted);line-height:1.7;text-align:center}
+.back{align-self:center;font-family:var(--f-round);color:var(--navy);font-size:14px}
+.tiles.pick .tile{position:relative;padding:10px}.tiles.pick .tile svg{max-width:none;width:100%}.tiles.pick .tile b{position:absolute;top:14px;left:14px;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:15px;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}</style>
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ill-a" viewBox="0 0 120 120">
+      <rect x="4" y="4" width="112" height="112" rx="14" fill="#26304A"/><circle cx="22" cy="20" r="1.6" fill="#FFF"/><circle cx="96" cy="16" r="1.4" fill="#FFF"/><circle cx="104" cy="40" r="1.2" fill="#FFF"/><path d="M20 50 L60 22 L100 50 Z" fill="#8A5A3C" stroke="#2B2320" stroke-width="2.2" stroke-linejoin="round"/><rect x="26" y="50" width="68" height="60" fill="#E9D7B8" stroke="#2B2320" stroke-width="2.2"/><circle cx="60" cy="62" r="20" fill="#FFE59A" opacity=".35"/><rect x="55" y="54" width="10" height="9" rx="3" fill="#FFD45A" stroke="#2B2320" stroke-width="1.8"/><rect x="47" y="70" width="26" height="40" rx="3" fill="#B4774A" stroke="#2B2320" stroke-width="2.2"/><circle cx="68" cy="91" r="1.8" fill="#2B2320"/><path d="M30 70 h12 v12 h-12 Z" fill="#FFD45A" stroke="#2B2320" stroke-width="1.8"/><ellipse cx="45" cy="112" rx="6" ry="3" fill="#6FA8DC" stroke="#2B2320" stroke-width="1.6"/><ellipse cx="56" cy="113" rx="6" ry="3" fill="#6FA8DC" stroke="#2B2320" stroke-width="1.6"/>
+    </symbol>
+    <symbol id="ill-b" viewBox="0 0 120 120">
+      <rect x="4" y="4" width="112" height="112" rx="14" fill="#3B4A63"/><rect x="18" y="14" width="84" height="62" rx="6" fill="#5C7392" stroke="#2B2320" stroke-width="2.2"/><path d="M60 14 V76 M18 45 H102" stroke="#2B2320" stroke-width="2"/><g stroke="#AFC6E0" stroke-width="2" stroke-linecap="round"><path d="M30 20 l-3 8"/><path d="M48 26 l-3 8"/><path d="M76 20 l-3 8"/><path d="M92 30 l-3 8"/><path d="M36 54 l-3 8"/><path d="M84 54 l-3 8"/></g><rect x="4" y="84" width="112" height="32" fill="#8C5A3C"/><rect x="4" y="84" width="112" height="5" fill="#A9794A"/><path d="M40 66 L22 90 H74 Z" fill="#FFE7A0" opacity=".35"/><path d="M38 56 h18 l5 12 h-28 Z" fill="#F7C948" stroke="#2B2320" stroke-width="2"/><path d="M47 68 V84" stroke="#2B2320" stroke-width="2.4"/><rect x="40" y="82" width="14" height="4" rx="2" fill="#5A3A26"/><rect x="70" y="76" width="22" height="9" rx="2" fill="#FFF3D6" stroke="#2B2320" stroke-width="1.8"/>
+    </symbol>
+    <symbol id="ill-c" viewBox="0 0 120 120">
+      <rect x="4" y="4" width="112" height="112" rx="14" fill="#2C2440"/><path d="M8 24 Q60 46 112 24" fill="none" stroke="#2B2320" stroke-width="1.8"/><circle cx="20" cy="30" r="5" fill="#FFD45A" stroke="#2B2320" stroke-width="1.4"/><circle cx="20" cy="30" r="9" fill="#FFD45A" opacity=".25"/><circle cx="38" cy="36" r="5" fill="#FFD45A" stroke="#2B2320" stroke-width="1.4"/><circle cx="38" cy="36" r="9" fill="#FFD45A" opacity=".25"/><circle cx="56" cy="38" r="5" fill="#FFD45A" stroke="#2B2320" stroke-width="1.4"/><circle cx="56" cy="38" r="9" fill="#FFD45A" opacity=".25"/><circle cx="74" cy="37" r="5" fill="#FFD45A" stroke="#2B2320" stroke-width="1.4"/><circle cx="74" cy="37" r="9" fill="#FFD45A" opacity=".25"/><circle cx="92" cy="33" r="5" fill="#FFD45A" stroke="#2B2320" stroke-width="1.4"/><circle cx="92" cy="33" r="9" fill="#FFD45A" opacity=".25"/><rect x="16" y="56" width="88" height="10" rx="3" fill="#E2574C" stroke="#2B2320" stroke-width="2"/><rect x="20" y="66" width="80" height="34" fill="#F4E4C8" stroke="#2B2320" stroke-width="2.2"/><ellipse cx="42" cy="78" rx="12" ry="5" fill="#FFF" stroke="#2B2320" stroke-width="1.8"/><path d="M38 70 q2 -5 0 -9 M46 70 q2 -5 0 -9" stroke="#FFF" stroke-width="1.8" fill="none" stroke-linecap="round"/><ellipse cx="74" cy="78" rx="12" ry="5" fill="#F7A24B" stroke="#2B2320" stroke-width="1.8"/><rect x="4" y="100" width="112" height="16" fill="#4A3E5E"/><rect x="30" y="102" width="14" height="8" rx="2" fill="#E2574C"/><rect x="76" y="102" width="14" height="8" rx="2" fill="#6FA8DC"/>
+    </symbol>
+    <symbol id="ill-d" viewBox="0 0 120 120">
+      <rect x="4" y="4" width="112" height="112" rx="14" fill="#1E2433"/><path d="M70 34 L40 92 H112 Z" fill="#FFE7A0" opacity=".25"/><path d="M58 22 h24 l6 14 h-36 Z" fill="#D8DDE6" stroke="#2B2320" stroke-width="2"/><path d="M70 36 L50 70 L58 84" fill="none" stroke="#2B2320" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><rect x="4" y="84" width="112" height="32" fill="#6B4A36"/><rect x="4" y="84" width="112" height="5" fill="#86603F"/><path d="M60 78 L92 74 L96 86 L64 90 Z" fill="#FFFDF5" stroke="#2B2320" stroke-width="1.8"/><path d="M66 81 l22 -3 M67 85 l22 -3" stroke="#B9B2A3" stroke-width="1.4"/><rect x="24" y="70" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#2B2320" stroke-width="1.8"/><path d="M40 74 q6 0 6 5 q0 5 -6 5" fill="none" stroke="#2B2320" stroke-width="1.8"/><rect x="26" y="72" width="12" height="4" fill="#7A4E2C"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+  <!-- landing -->
+  <section id="home" class="wrap-inner" style="display:flex;flex-direction:column;gap:22px">
+    <div class="intro">
+      <span class="pill">心理測驗 · 家門口那盞燈</span>
+      <h1>憑直覺<br>選一盞燈</h1>
+      <p class="muted">不用想，第一眼被吸引的那盞就是。</p>
+    </div>
+    <div class="card tiles pick">
+      <a class="tile" href="#a"><svg><use href="#ill-a"/></svg><b>A</b></a>
+      <a class="tile" href="#b"><svg><use href="#ill-b"/></svg><b>B</b></a>
+      <a class="tile" href="#c"><svg><use href="#ill-c"/></svg><b>C</b></a>
+      <a class="tile" href="#d"><svg><use href="#ill-d"/></svg><b>D</b></a>
+    </div>
+  </section>
+
+  <!-- result -->
+  <section id="result" hidden style="display:flex;flex-direction:column;gap:22px">
+    <div class="res-head">
+      <span class="pill">給你的一封小短信</span>
+      <h1 id="r-title"></h1>
+      <p class="chosen" id="r-chosen"></p>
+    </div>
+    <div class="res-art"><svg><use id="r-art" href="#ill-a"/></svg></div>
+    <p class="card quote" id="r-quote"></p>
+    <article class="card letter-card" id="r-body"></article>
+
+    <section class="card join" id="join">
+      <span class="eyebrow">上班族的加密貨幣學習社群</span>
+      <h2>累的時候，也要有一盞燈</h2>
+      <p>不管你最需要的是被等待、安靜、陪伴，還是終於可以停下來，背後都需要一點底氣。把錢的事學懂，就是替自己留一盞燈。不管你是哪一型，第一步都一樣。這裡有一群跟你一樣的上班族，一起從零開始學。</p>
+      <a class="btn" id="join-btn" href="#join" target="_blank" rel="noopener">加入社群 →</a>
+      <div class="code">
+        <span id="code-text">入群暗號「<strong id="code">燈</strong>」，可以先領新手入門筆記</span>
+        <button class="copy" id="copy-btn" type="button">複製</button>
+      </div>
+    </section>
+
+    <section class="others">
+      <h2>也看看另外三種心情</h2>
+      <div id="r-others" class="others"></div>
+    </section>
+
+    <section class="card close">
+      <h2>總有一盞燈，為你亮著</h2>
+      <p>累的時候不一定要說出口。如果你很久沒回家了，這週回去吃頓飯吧。</p>
+      <p>今天，也替自己點一盞燈。</p>
+      <p class="sign" id="sign"></p>
+    </section>
+    <a class="back" href="#home">← 回到題目</a>
+  </section>
+
+  <footer>加密貨幣價格波動很大，可能損失全部本金。本頁為心理測驗與學習分享，不構成任何投資建議。</footer>
+</div>
+
+<script>
+/* ===== 這裡改成你自己的資料（引號請用半形 " ） ===== */
+window.CONFIG = {
+  name: "[你的名字]",            // 發文者署名
+  joinUrl: "",                   // 社群連結，例如 https://line.me/ti/g2/xxxx
+  code: "燈"                   // 入群暗號
+};
+/* ================================ */
+</script>
+<script>
+const CONFIG = Object.assign({ name: "", joinUrl: "", code: "" }, window.CONFIG || {});
+
+const R = {
+ "a": {
+  "title": "你最需要的，是被等待",
+  "chosen": "你選了 A｜老家門口亮著的燈",
+  "quote": "有人在等你回去，你就不是一個人在撐。",
+  "secs": [
+   [
+    "你選的，其實是一種心情",
+    [
+     "你第一眼就被家門口那盞燈吸引，代表你最近心裡最想要的，是一個不用解釋就能回去的地方。推開門，有人問你吃飽沒。",
+     "你很重感情，也很習慣把累藏起來，不想讓家人擔心。"
+    ]
+   ],
+   [
+    "這份心情，背後是什麼",
+    [
+     "你不是不想說，是怕一說出口，家人會替你擔心。所以你常常報喜不報憂，連電話裡都說「還好啊」。其實你只是很想被接住一下。"
+    ]
+   ],
+   [
+    "如果這些日常讓你有共鳴",
+    [
+     "加班到很晚會突然很想回家；接到爸媽電話，聲音會變得特別輕鬆；看到別人回家吃飯的照片，心裡會酸一下。"
+    ]
+   ],
+   [
+    "在錢這件事上，可以怎麼練習",
+    [
+     "想讓自己隨時都能回家，需要一點「可以喘口氣的底氣」。先存一筆三到六個月生活費的預備金，累了就能好好休息，不用硬撐。也可以跟家人聊聊彼此以後的打算，一起準備，比一個人默默擔心安心很多。"
+    ]
+   ]
+  ],
+  "steps": [
+   [
+    "這週回家吃一頓飯",
+    "不用理由，回去就好。"
+   ],
+   [
+    "打一通電話，說一句真話",
+    "「最近有點累」也可以。"
+   ],
+   [
+    "開始存一筆喘口氣的錢",
+    "累了，才有地方停。"
+   ]
+  ],
+  "ask": "你上一次回家，是什麼時候？",
+  "say": "我可以累，也有地方可以回去。"
+ },
+ "b": {
+  "title": "你最需要的，是安靜一下",
+  "chosen": "你選了 B｜雨夜窗邊的小檯燈",
+  "quote": "你不是不要人陪，只是想先讓心安靜下來。",
+  "secs": [
+   [
+    "你選的，其實是一種心情",
+    [
+     "你被雨夜裡那盞小檯燈吸引，代表你最近最想要的，是一段沒有人打擾的時間。不用回訊息、不用笑、不用說「我沒事」。",
+     "你很體貼，總是先照顧別人的感受，久了，自己反而沒有位置。"
+    ]
+   ],
+   [
+    "這份心情，背後是什麼",
+    [
+     "你每天面對很多人、很多聲音，能量一直被拿走。一個人安靜待著，是你替自己充電的方式，不是孤僻。"
+    ]
+   ],
+   [
+    "如果這些日常讓你有共鳴",
+    [
+     "下班後只想關在房間；聚會結束會覺得特別累；最放鬆的時刻是下雨天、窩在床上什麼都不做。"
+    ]
+   ],
+   [
+    "在錢這件事上，可以怎麼練習",
+    [
+     "安靜的人，最需要的是「不被錢追著跑」的空間。設定發薪日自動轉存，不用花力氣想也在存；先把每個月固定的開銷算清楚，知道自己夠用，心就能真的安靜下來。不用急著跟別人比，也不要因為焦慮就去找快速賺錢的方法。"
+    ]
+   ]
+  ],
+  "steps": [
+   [
+    "每週留一段不回訊息的時間",
+    "安靜，也要排進行程。"
+   ],
+   [
+    "設定發薪日自動轉存",
+    "不用想，也在準備。"
+   ],
+   [
+    "算一次每月固定開銷",
+    "知道夠用，就不慌。"
+   ]
+  ],
+  "ask": "如果有一整天完全不用跟人說話，你最想做什麼？",
+  "say": "我可以安靜，也可以好好的。"
+ },
+ "c": {
+  "title": "你最需要的，是有人陪",
+  "chosen": "你選了 C｜宵夜攤的一串燈泡",
+  "quote": "不用說什麼大道理，有人陪你吃一碗麵就夠了。",
+  "secs": [
+   [
+    "你選的，其實是一種心情",
+    [
+     "你被熱鬧的宵夜攤吸引，代表你最近心裡有點空，很想找人說說話、一起吃點東西。不一定要聊心事，有人在旁邊就好。",
+     "你很重朋友，也常常是那個約大家出來的人。"
+    ]
+   ],
+   [
+    "這份心情，背後是什麼",
+    [
+     "你一直很會照顧氣氛，但最近可能少了能讓你放心說真話的人。其實你不是怕孤單，是怕累的時候，身邊沒有人。"
+    ]
+   ],
+   [
+    "如果這些日常讓你有共鳴",
+    [
+     "深夜會突然很想吃宵夜；看到朋友在聚會的動態會想加入；心情不好時，第一個想到的是找人出來走走。"
+    ]
+   ],
+   [
+    "在錢這件事上，可以怎麼練習",
+    [
+     "重感情的人，錢常常花在聚會和人情上，這很正常。可以替自己開一個「陪伴基金」，每個月固定一筆，花在想見的人身上，花完就停，不用有罪惡感。也可以找一群一起學錢的事的人，邊聊邊學，會走得更久。"
+    ]
+   ]
+  ],
+  "steps": [
+   [
+    "這週約一個想見的人吃宵夜",
+    "不用理由，見面就好。"
+   ],
+   [
+    "開一個陪伴基金",
+    "想見的人，就有預算見。"
+   ],
+   [
+    "找一群一起學的人",
+    "一起，就不孤單。"
+   ]
+  ],
+  "ask": "最近你最想約誰出來吃一頓宵夜？",
+  "say": "累的時候，我也可以找人陪。"
+ },
+ "d": {
+  "title": "你其實，還不敢停下來",
+  "chosen": "你選了 D｜深夜書桌上的檯燈",
+  "quote": "你一直很努力，努力到忘了自己也會累。",
+  "secs": [
+   [
+    "你選的，其實是一種心情",
+    [
+     "你被深夜那盞檯燈吸引，代表你心裡還有很多事放不下：還沒做完的、還沒準備好的、還想再撐一下的。",
+     "你很負責，也很怕一停下來，就會被落下。"
+    ]
+   ],
+   [
+    "這份心情，背後是什麼",
+    [
+     "你不是不累，是不敢累。你心裡有一份「再撐一下就好」的清單，可是清單好像永遠做不完。"
+    ]
+   ],
+   [
+    "如果這些日常讓你有共鳴",
+    [
+     "常常忙到很晚才關燈；休假也會想著工作的事；別人叫你休息，你會說「等這件做完」。"
+    ]
+   ],
+   [
+    "在錢這件事上，可以怎麼練習",
+    [
+     "不敢停下來的人，最需要的是「停下來也沒關係」的底氣。先存好三到六個月的預備金，讓你知道就算休息一陣子也撐得住。很累的時候也不要做大的錢的決定，不管是衝動購物，還是急著找快速賺錢的方法。"
+    ]
+   ]
+  ],
+  "steps": [
+   [
+    "今晚早一點關燈",
+    "事情明天還在。"
+   ],
+   [
+    "先存好預備金",
+    "停下來，也撐得住。"
+   ],
+   [
+    "寫下一件可以先放下的事",
+    "不是每件都要現在做。"
+   ]
+  ],
+  "ask": "如果今天可以先停下來，你最想放下哪一件事？",
+  "say": "我可以停一下，也一樣在往前。"
+ }
+};
+const SHORT = {"a": "你最需要的，是被等待", "b": "你最需要的，是安靜一下", "c": "你最需要的，是有人陪", "d": "你其實，還不敢停下來"};
+const nums = ["①","②","③"];
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+function render(k){
+  const r = R[k];
+  $("r-title").textContent = r.title;
+  $("r-chosen").textContent = r.chosen;
+  $("r-quote").textContent = r.quote;
+  const pickMode = !!document.querySelector(".tiles.pick");
+  if (pickMode) { document.querySelector(".res-art").innerHTML = pic(k); }
+  else if ($("r-art")) { $("r-art").setAttribute("href", "#ill-" + k); }
+  let h = r.secs.map(([t, ps]) => `<div class="sec"><h3>${t}</h3>${ps.map(p => `<p>${esc(p)}</p>`).join("")}</div>`).join("");
+  h += `<div class="sec"><h3>今天就能開始的三件小事</h3><div class="steps">${r.steps.map((s,i)=>`<div><b>${nums[i]} ${s[0]}</b>${s[1]}</div>`).join("")}</div></div>`;
+  h += `<div class="sec"><h3>留一個問題給自己</h3><p>${r.ask}</p></div>`;
+  h += `<div class="sec"><h3>也送給自己這句話</h3><p class="say">「${r.say}」</p></div>`;
+  $("r-body").innerHTML = h;
+  const pick = !!document.querySelector(".tiles.pick");
+  $("r-others").classList.toggle("pick-others", pick);
+  $("r-others").innerHTML = Object.keys(R).filter(x => x !== k).map(x => pick
+    ? `<a class="card po" href="#${x}"><span class="po-art">${pic(x)}<b>${x.toUpperCase()}</b></span><span class="po-t">${SHORT[x]}</span></a>`
+    : `<details class="card"><summary><b>${x.toUpperCase()}</b>｜${SHORT[x]}</summary><div class="in"><p class="muted">${R[x].quote}</p><a href="#${x}">看完整解析</a></div></details>`).join("");
+}
+function pic(k){
+  return `<svg viewBox="0 0 120 120"><use href="#ill-${k}"/></svg><img class="pimg" src="${(window.PICS && PICS[k]) || (k + ".png")}" alt="" onerror="this.remove()">`;
+}
+document.querySelectorAll(".tiles.pick .tile").forEach(t => {
+  const k = t.getAttribute("href").slice(1);
+  const svg = t.querySelector("svg");
+  const w = document.createElement("span"); w.className = "pw"; w.innerHTML = pic(k);
+  svg.replaceWith(w);
+});
+function show(k){
+  if (k && k !== "home" && !(k in R)) return;
+  const isRes = k in R;
+  $("home").hidden = isRes;
+  $("result").hidden = !isRes;
+  if (isRes) render(k);
+  window.scrollTo(0, 0);
+}
+$("sign").textContent = CONFIG.name ? "— " + CONFIG.name : "";
+$("code").textContent = CONFIG.code;
+(function setupJoin(){
+  const btn = $("join-btn");
+  let url = String(CONFIG.joinUrl || "").trim();
+  if (url && !/^https?:\/\//i.test(url)) url = "https://" + url;
+  if (url) { btn.href = url; return; }
+  btn.removeAttribute("href"); btn.removeAttribute("target");
+  btn.setAttribute("aria-disabled", "true");
+  btn.classList.add("off");
+  btn.textContent = "社群連結準備中";
+})();
+function copyText(text){
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+  return new Promise((ok, fail) => {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, text.length);
+    let done = false; try { done = document.execCommand("copy"); } catch (e) {}
+    ta.remove(); done ? ok() : fail();
+  });
+}
+$("copy-btn").addEventListener("click", () => {
+  const b = $("copy-btn");
+  copyText(CONFIG.code).then(() => {
+    b.textContent = "已複製"; setTimeout(() => b.textContent = "複製", 1500);
+  }).catch(() => {
+    getSelection().selectAllChildren($("code")); b.textContent = "請長按複製";
+  });
+});
+function route(){ show((location.hash || "").slice(1).toLowerCase()); }
+function go(k){
+  try { history.pushState(null, "", "#" + k); } catch (e) {}
+  show(k);
+}
+document.addEventListener("click", (e) => {
+  const a = e.target.closest && e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const k = a.getAttribute("href").slice(1).toLowerCase();
+  if (k !== "home" && !(k in R)) return;
+  e.preventDefault();
+  go(k);
+});
+window.addEventListener("hashchange", route);
+window.addEventListener("popstate", route);
+route();
+</script>
+</body>
+</html>
